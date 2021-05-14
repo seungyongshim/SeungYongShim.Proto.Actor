@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Extensions.DependencyInjection;
 using SeungYongShim.Proto.DependencyInjection;
 
@@ -18,6 +18,10 @@ namespace Proto
 
         public static IPropsFactory<T> PropsFactory<T>(this IRootContext context) where T : IActor
             => context.System.ServiceProvider().GetRequiredService<IPropsFactory<T>>();
+
+        public static IPropsFactory<T> PropsFactory<T>(this IContext context) where T : IActor
+            => context.System.ServiceProvider().GetRequiredService<IPropsFactory<T>>();
+        
 
         private static IServiceProvider ServiceProvider(this ActorSystem system) => system.Extensions.Get<ServiceProviderExtension>()!.ServiceProvider;
     }

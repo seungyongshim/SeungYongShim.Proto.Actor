@@ -40,7 +40,7 @@ namespace SampleConsoleApp
         {
             await
             Host.CreateDefaultBuilder()
-                .UseProtoActor(ActorSystemConfig.Setup(), root =>
+                .UseProtoActor(_ => _, root =>
                 {
                     var pongActor = root.SpawnNamed(root.PropsFactory<PongActor>().Create("World"),
                                                     "PongActor");
