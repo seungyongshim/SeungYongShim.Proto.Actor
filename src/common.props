@@ -3,8 +3,8 @@
     <Copyright>Copyright © 2020-2021 </Copyright>
     <Authors>Seungyong Shim</Authors>
     <Version>0.0.0.000</Version>
-    <PackageProjectUrl>https://github.com/seungyongshim/SeungYongShim.Proto.OpenTelemetry</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/seungyongshim/SeungYongShim.Proto.OpenTelemetry/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/seungyongshim/SeungYongShim.Proto.Actor</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/seungyongshim/SeungYongShim.Proto.Actor/blob/master/LICENSE</PackageLicenseUrl>
     <NoWarn>$(NoWarn);CS1591;xUnit1013</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -17,7 +17,7 @@
   </ItemGroup>
   <PropertyGroup>
     <PackageIcon>icon.png</PackageIcon>
-    <RepositoryUrl>https://github.com/seungyongshim/SeungYongShim.Proto.OpenTelemetry</RepositoryUrl>
+    <RepositoryUrl>https://github.com/seungyongshim/SeungYongShim.Proto.Actor</RepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
