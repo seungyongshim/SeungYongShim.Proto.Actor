@@ -3,8 +3,8 @@
     <Copyright>Copyright © 2020-2021 </Copyright>
     <Authors>Seungyong Shim</Authors>
     <Version>0.0.0.000</Version>
-    <PackageProjectUrl>https://github.com/seungyongshim/ModificationHere</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/seungyongshim/ModificationHere/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/seungyongshim/SeungYongShim.Proto.OpenTelemetry</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/seungyongshim/SeungYongShim.Proto.OpenTelemetry/blob/master/LICENSE</PackageLicenseUrl>
     <NoWarn>$(NoWarn);CS1591;xUnit1013</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -12,12 +12,14 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Proto.Actor" Version="0.17.0" />
     <None Include="$(SolutionDir)..\icon.png" Pack="true" PackagePath="\"/>
   </ItemGroup>
   <PropertyGroup>
     <PackageIcon>icon.png</PackageIcon>
-    <RepositoryUrl>https://github.com/seungyongshim/ModificationHere</RepositoryUrl>
+    <RepositoryUrl>https://github.com/seungyongshim/SeungYongShim.Proto.OpenTelemetry</RepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
