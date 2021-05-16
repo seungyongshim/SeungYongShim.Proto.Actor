@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Proto;
+using Proto.Remote.
 using Microsoft.Extensions.Logging;
+using Proto.Remote.GrpcCore;
 
 namespace SampleConsoleApp
 {
@@ -26,7 +28,6 @@ namespace SampleConsoleApp
         };
         private async Task OnReceiveString(string hello)
         {
-            Console.WriteLine($"{hello} {World}");
             Logger.LogInformation($"{hello} {World}");
 
             await Task.CompletedTask;
@@ -38,9 +39,9 @@ namespace SampleConsoleApp
     {
         static async Task Main(string[] args)
         {
-            await
             Host.CreateDefaultBuilder()
-                .UseProtoActor(_ => _, root =>
+                .UseProtoActor(config => config, sys => sys,
+                root =>
                 {
                     var pongActor = root.SpawnNamed(root.PropsFactory<PongActor>().Create("World"),
                                                     "PongActor");

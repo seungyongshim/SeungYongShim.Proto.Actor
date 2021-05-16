@@ -9,13 +9,14 @@ namespace Microsoft.Extensions.Hosting
     {
         public static IHostBuilder UseProtoActor(this IHostBuilder host,
                                                  Func<ActorSystemConfig, ActorSystemConfig> configFunc,
+                                                 Func<ActorSystem, ActorSystem> sysFunc,
                                                  ProtoActorHostedServiceStart akkaHostedServiceStart)
         {
             host.ConfigureServices((context, services) =>
             {
                 services.AddSingleton(akkaHostedServiceStart);
-                services.AddSingleton(sp => new ActorSystem(configFunc?.Invoke(ActorSystemConfig.Setup()))
-                                               .WithServiceProvider(sp));
+                services.AddSingleton(sp => sysFunc(new ActorSystem(configFunc?.Invoke(ActorSystemConfig.Setup()))
+                                                                               .WithServiceProvider(sp)));
                 services.AddSingleton(typeof(IPropsFactory<>), typeof(PropsFactory<>));
                 services.AddHostedService<ProtoActorHostedService>();
                 services.AddSingleton(sp => (IRootContext)new RootContext(sp.GetService<ActorSystem>()));
