@@ -1,9 +1,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Nexon.MessageTeam.Proto.OpenTelemetry;
 using Proto;
-using Proto.DependencyInjection;
 
 namespace SampleWebApp.Actors
 {

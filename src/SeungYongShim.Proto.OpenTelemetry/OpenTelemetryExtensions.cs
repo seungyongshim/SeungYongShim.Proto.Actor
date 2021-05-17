@@ -1,10 +1,9 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using SeungYongShim.Proto.OpenTelemetry;
 using Proto;
 
-namespace Nexon.MessageTeam.Proto.OpenTelemetry
+namespace SeungYongShim.Proto.OpenTelemetry
 {
     public static class OpenTelemetryExtensions
     {
@@ -15,7 +14,7 @@ namespace Nexon.MessageTeam.Proto.OpenTelemetry
         internal static Func<Sender, Sender> OpenTelemetrySenderMiddleware()
             => next => async (context, target, envelope) =>
             {
-                Task SimpleNext() => next(context, target, envelope); 
+                Task SimpleNext() => next(context, target, envelope);
 
                 envelope = envelope.WithHeader("ActivityId", Activity.Current?.Id);
 

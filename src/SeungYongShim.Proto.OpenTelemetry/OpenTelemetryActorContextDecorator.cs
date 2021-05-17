@@ -1,7 +1,6 @@
-using System;                                                                
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Nexon.MessageTeam.Proto.OpenTelemetry;
 using Proto;
 
 namespace SeungYongShim.Proto.OpenTelemetry
@@ -21,7 +20,7 @@ namespace SeungYongShim.Proto.OpenTelemetry
                 var pid = Context.Self;
                 var message = envelope.Message.ToString();
 
-                using var activity = ActivitySourceStatic.Instance.StartActivity($"{pid}@{message}",
+                using var activity = ActivitySourceStatic.Instance.StartActivity($"{pid}@{message.GetType().Name}",
                                                                                  ActivityKind.Internal,
                                                                                  activityId);
                 activity.AddTag("Actor.Path", pid);
@@ -49,19 +48,20 @@ namespace SeungYongShim.Proto.OpenTelemetry
 
         public override PID SpawnNamed(Props props, string name)
         {
-            var activityId = Activity.Current?.Id;
-            if (activityId != null)
+            Func<PID> ret = Activity.Current?.Id switch
             {
-                using var activity = ActivitySourceStatic.Instance.StartActivity("");
-                var ret = base.SpawnNamed(props, name);
+                null => () => base.SpawnNamed(props, name),
+                _ => () =>
+                {
+                    using var activity = ActivitySourceStatic.Instance.StartActivity(string.Empty);
+                    var pid = base.SpawnNamed(props, name);
 
-                activity.DisplayName = $"{ret}@SpawnActor";
-                return ret;
-            }
-            else
-            {
-                return base.SpawnNamed(props, name);
-            }
+                    activity.DisplayName = $"{pid}@SpawnActor";
+                    return pid;
+                }
+            };
+
+            return ret.Invoke();
         }
     }
 }

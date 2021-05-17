@@ -1,8 +1,8 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
-using Nexon.MessageTeam.Proto.OpenTelemetry;
 using Proto;
 using SeungYongShim.Proto.DependencyInjection;
+using SeungYongShim.Proto.OpenTelemetry;
 
 namespace Microsoft.Extensions.Hosting
 {

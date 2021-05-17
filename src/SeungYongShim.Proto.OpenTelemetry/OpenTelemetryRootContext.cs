@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Proto;
 
-namespace Nexon.MessageTeam.Proto.OpenTelemetry
+namespace SeungYongShim.Proto.OpenTelemetry
 {
     public static class Middleware
     {

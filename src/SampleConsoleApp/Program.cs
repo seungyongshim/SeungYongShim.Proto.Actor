@@ -35,16 +35,16 @@ namespace SampleConsoleApp
     {
         private static async Task Main(string[] args)
         {
-            Host.CreateDefaultBuilder()
-                .UseProtoActor(_ => _, _=> _,
-                root =>
-                {
-                    var pongActor = root.SpawnNamed(root.PropsFactory<PongActor>().Create("World"),
-                                                    "PongActor");
-
-                    root.Send(pongActor, "Hello");
-                })
-                .RunConsoleAsync();
+            await Host.CreateDefaultBuilder()
+                      .UseProtoActor(_ => _, _ => _,
+                      root =>
+                      {
+                          var pongActor = root.SpawnNamed(root.PropsFactory<PongActor>().Create("World"),
+                                                          "PongActor");
+                   
+                          root.Send(pongActor, "Hello");
+                      })
+                      .RunConsoleAsync();
         }
     }
 }

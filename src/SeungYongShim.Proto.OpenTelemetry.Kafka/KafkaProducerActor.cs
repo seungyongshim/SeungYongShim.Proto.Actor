@@ -22,7 +22,7 @@ namespace SeungYongShim.Proto.OpenTelemetry.Kafka
         public Task ReceiveAsync(IContext context) => context.Message switch
         {
             Stopped msg => Handle(msg),
-            SendMessage msg => Handle(msg, context.Sender, context),
+            KafkaMessage msg => Handle(msg, context.Sender, context),
             _ => Task.CompletedTask,
         };
 
@@ -32,16 +32,16 @@ namespace SeungYongShim.Proto.OpenTelemetry.Kafka
             return Task.CompletedTask;
         }
 
-        private async Task Handle(SendMessage msg, PID sender, IContext context)
+        private async Task Handle(KafkaMessage msg, PID sender, IContext context)
         {
             try
             {
                 await Producer.SendAsync(msg.Dto, msg.Topic, msg.Key);
-                context.Send(sender, new SendMessage.Result());
+                context.Send(sender, new KafkaMessage.Result());
             }
             catch (Exception ex)
             {
-                context.Send(sender, new SendMessage.ResultException(ex));
+                context.Send(sender, new KafkaMessage.ResultException(ex));
             }
         }
     }
