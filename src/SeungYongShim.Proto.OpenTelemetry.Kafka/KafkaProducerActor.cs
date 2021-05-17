@@ -9,7 +9,8 @@ namespace SeungYongShim.Proto.OpenTelemetry.Kafka
     public class KafkaProducerActor : IActor
     {
         public KafkaProducerActor(ILogger<KafkaProducerActor> logger,
-                                  KafkaProducer producer)
+                                  KafkaProducer producer,
+                                  string persistenceId)
         {
             Logger = logger;
             Producer = producer;
@@ -20,7 +21,28 @@ namespace SeungYongShim.Proto.OpenTelemetry.Kafka
 
         public Task ReceiveAsync(IContext context) => context.Message switch
         {
-            _ => throw new NotImplementedException()
+            Stopped msg => Handle(msg),
+            SendMessage msg => Handle(msg, context.Sender, context),
+            _ => Task.CompletedTask,
         };
+
+        private Task Handle(Stopped _)
+        {
+            Producer.Dispose();
+            return Task.CompletedTask;
+        }
+
+        private async Task Handle(SendMessage msg, PID sender, IContext context)
+        {
+            try
+            {
+                await Producer.SendAsync(msg.Dto, msg.Topic, msg.Key);
+                context.Send(sender, new SendMessage.Result());
+            }
+            catch (Exception ex)
+            {
+                context.Send(sender, new SendMessage.ResultException(ex));
+            }
+        }
     }
 }
