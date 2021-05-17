@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Proto;
+using SampleWebApp.Messages;
 
 namespace SampleWebApp.Actors
 {
@@ -16,20 +17,19 @@ namespace SampleWebApp.Actors
 
         public Task ReceiveAsync(IContext context) => context.Message switch
         {
-            string msg => OnHelloMessage(msg, context),
+            Hello msg => OnHelloMessage(msg, context),
             _ => Task.CompletedTask
         };
 
-        public async Task OnHelloMessage(string msg, IContext context)
+        public async Task OnHelloMessage(Hello msg, IContext context)
         {
-            var activity = Activity.Current;
-            Logger.LogInformation(msg);
+            Logger.LogInformation(msg.ToString());
             context.Respond("Hello");
 
             var worker = context.Spawn(context.PropsFactory<HelloWorkerActor>()
                                               .Create());
 
-            context.Send(worker, "World");
+            context.Send(worker, msg);
 
             await Task.CompletedTask;
         }

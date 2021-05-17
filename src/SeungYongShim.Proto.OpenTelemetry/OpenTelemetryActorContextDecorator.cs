@@ -18,7 +18,7 @@ namespace SeungYongShim.Proto.OpenTelemetry
             if (activityId != null)
             {
                 var pid = Context.Self;
-                var message = envelope.Message.ToString();
+                var message = envelope.Message;
 
                 using var activity = ActivitySourceStatic.Instance.StartActivity($"{pid}@{message.GetType().Name}",
                                                                                  ActivityKind.Internal,

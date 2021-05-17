@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Proto;
+using SampleWebApp.Messages;
 
 namespace SampleWebApp.Actors
 {
@@ -8,7 +9,7 @@ namespace SampleWebApp.Actors
     {
         public Task ReceiveAsync(IContext context) => context.Message switch
         {
-            string a => throw new Exception("Crash!!!"),
+            Hello a => throw new Exception("Crash!!!"),
             _ => Task.CompletedTask
         };
     }

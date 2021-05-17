@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Proto;
 using SeungYongShim.Kafka;
@@ -34,6 +32,7 @@ namespace SeungYongShim.Proto.OpenTelemetry.Kafka
             Commitable msg => Handle(msg, context),
             _ => Task.CompletedTask
         };
+
         private async Task Handle(Commitable msg, IContext context)
         {
             await context.RequestAsync<KafkaCommit>(ParserActor, msg);

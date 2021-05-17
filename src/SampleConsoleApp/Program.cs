@@ -39,7 +39,8 @@ namespace SampleConsoleApp
                       .UseProtoActor(_ => _, _ => _,
                       root =>
                       {
-                          var pongActor = root.SpawnNamed(root.PropsFactory<PongActor>().Create("World"),
+                          var pongActor = root.SpawnNamed(root.PropsFactory<PongActor>()
+                                                              .Create("World"),
                                                           "PongActor");
                    
                           root.Send(pongActor, "Hello");

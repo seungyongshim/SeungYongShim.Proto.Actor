@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Proto;
+using SampleWebApp.Messages;
 
 namespace SampleWebApp.Controllers
 {
@@ -25,7 +26,7 @@ namespace SampleWebApp.Controllers
         {
             var response = await Root.RequestAsync<string>(new PID(Root.System.Address,
                                                                    "HelloManage"),
-                                                           "Hello", TimeSpan.FromSeconds(30));
+                                                           new Hello("World"), TimeSpan.FromSeconds(30));
             return await Task.FromResult(response); 
         }
     }
