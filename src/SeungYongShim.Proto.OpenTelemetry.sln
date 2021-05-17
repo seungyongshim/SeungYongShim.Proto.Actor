@@ -10,15 +10,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		common.props = common.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeungYongShim.Proto.DependencyInjection.OpenTelemetry", "SeungYongShim.Proto.DependencyInjection.OpenTelemetry\SeungYongShim.Proto.DependencyInjection.OpenTelemetry.csproj", "{4A0D5066-D8BC-46ED-9603-F972C1977620}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeungYongShim.Proto.DependencyInjection.OpenTelemetry", "SeungYongShim.Proto.DependencyInjection.OpenTelemetry\SeungYongShim.Proto.DependencyInjection.OpenTelemetry.csproj", "{4A0D5066-D8BC-46ED-9603-F972C1977620}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeungYongShim.Proto.DependencyInjection", "SeungYongShim.Proto.DependencyInjection\SeungYongShim.Proto.DependencyInjection.csproj", "{190EAF2E-AE9E-44ED-907D-17330EE0BCF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeungYongShim.Proto.DependencyInjection", "SeungYongShim.Proto.DependencyInjection\SeungYongShim.Proto.DependencyInjection.csproj", "{190EAF2E-AE9E-44ED-907D-17330EE0BCF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebApp", "SampleWebApp\SampleWebApp.csproj", "{44D43EF7-AEAF-4088-8460-301FEEAABF85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleWebApp", "SampleWebApp\SampleWebApp.csproj", "{44D43EF7-AEAF-4088-8460-301FEEAABF85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleConsoleApp", "SampleConsoleApp\SampleConsoleApp.csproj", "{4405474F-C822-48CD-AD68-784E66101424}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleConsoleApp", "SampleConsoleApp\SampleConsoleApp.csproj", "{4405474F-C822-48CD-AD68-784E66101424}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeungYongShim.Proto.DependencyInjection.OpenTelemetry.Tests", "SeungYongShim.Proto.DependencyInjection.OpenTelemetry.Tests\SeungYongShim.Proto.DependencyInjection.OpenTelemetry.Tests.csproj", "{683F63D0-586D-4A51-B268-F7979DECCD46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeungYongShim.Proto.DependencyInjection.OpenTelemetry.Tests", "SeungYongShim.Proto.DependencyInjection.OpenTelemetry.Tests\SeungYongShim.Proto.DependencyInjection.OpenTelemetry.Tests.csproj", "{683F63D0-586D-4A51-B268-F7979DECCD46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeungYongShim.Proto.OpenTelemetry.Kafka", "SeungYongShim.Proto.OpenTelemetry.Kafka\SeungYongShim.Proto.OpenTelemetry.Kafka.csproj", "{D89D30A0-25B3-4CFA-8E02-EE8F72322924}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +52,10 @@ Global
 		{683F63D0-586D-4A51-B268-F7979DECCD46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{683F63D0-586D-4A51-B268-F7979DECCD46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{683F63D0-586D-4A51-B268-F7979DECCD46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D89D30A0-25B3-4CFA-8E02-EE8F72322924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D89D30A0-25B3-4CFA-8E02-EE8F72322924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D89D30A0-25B3-4CFA-8E02-EE8F72322924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D89D30A0-25B3-4CFA-8E02-EE8F72322924}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
