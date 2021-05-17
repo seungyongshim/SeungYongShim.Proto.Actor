@@ -34,7 +34,7 @@ namespace SampleWebApp
                                .AddJaegerExporter()
                                .SetSampler(new AlwaysOnSampler()));
                    })
-                   .UseProtoActor(_ => _, root =>
+                   .UseProtoActor(_ => _, _ => _, root =>
                    {
                        var props = root.SpawnNamed(root.PropsFactory<HelloManagerActor>().Create(),
                                                    "HelloManage");
