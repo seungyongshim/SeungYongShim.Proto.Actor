@@ -24,5 +24,8 @@ namespace Microsoft.Extensions.Hosting
 
             return host;
         }
+
+        public static T CreateInstance<T>(this IServiceProvider sp, params object[] args)
+            => (T)ActivatorUtilities.CreateInstance(sp, typeof(T), args);
     }
 }

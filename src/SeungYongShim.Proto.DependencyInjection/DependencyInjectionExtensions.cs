@@ -22,7 +22,8 @@ namespace Proto
         public static IPropsFactory<T> PropsFactory<T>(this IContext context) where T : IActor
             => context.System.ServiceProvider().GetRequiredService<IPropsFactory<T>>();
         
+        public static IServiceProvider ServiceProvider(this ActorSystem system) => system.Extensions.Get<ServiceProviderExtension>()!.ServiceProvider;
 
-        private static IServiceProvider ServiceProvider(this ActorSystem system) => system.Extensions.Get<ServiceProviderExtension>()!.ServiceProvider;
+        
     }
 }

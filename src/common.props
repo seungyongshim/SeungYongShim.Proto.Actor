@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Copyright>Copyright © 2020-2021 </Copyright>
     <Authors>Seungyong Shim</Authors>
-    <Version>0.0.0.000</Version>
+    <Version>9999.0.0.000</Version>
     <PackageProjectUrl>https://github.com/seungyongshim/SeungYongShim.Proto.Actor</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/seungyongshim/SeungYongShim.Proto.Actor/blob/master/LICENSE</PackageLicenseUrl>
     <NoWarn>$(NoWarn);CS1591;xUnit1013</NoWarn>

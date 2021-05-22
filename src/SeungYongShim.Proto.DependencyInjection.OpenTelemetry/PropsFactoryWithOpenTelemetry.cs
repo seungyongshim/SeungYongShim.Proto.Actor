@@ -18,8 +18,9 @@ namespace Microsoft.Extensions.Hosting
         public IServiceProvider ServiceProvider { get; }
 
         public Props Create(params object[] args)
-            => Props.FromProducer(() => (T)ActivatorUtilities.CreateInstance(ServiceProvider, typeof(T), args))
-                    .WithOpenTelemetry();
+            => Props.FromProducer(() => ServiceProvider.CreateInstance<T>(args))
+                    .WithOpenTelemetry()
+                    .WithContextDecorator(ctx => new LoggerActorContextDecorator(ctx, ServiceProvider));
     }
     
 }

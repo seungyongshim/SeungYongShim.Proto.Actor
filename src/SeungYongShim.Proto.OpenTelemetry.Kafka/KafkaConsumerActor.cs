@@ -1,25 +1,30 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Proto;
 using SeungYongShim.Kafka;
 
 namespace SeungYongShim.Proto.OpenTelemetry.Kafka
 {
-    public class KafkaConsumerActor : IActor
+    public partial class KafkaConsumerActor : IActor
     {
-        public KafkaConsumerActor(KafkaConsumer kafkaConsumer,
+        public KafkaConsumerActor(ILogger<KafkaConsumerActor> logger,
+                                  KafkaConsumer kafkaConsumer,
                                   ICollection<string> topics,
                                   string groupId,
                                   PID parserActor)
         {
+            Logger = logger;
             KafkaConsumer = kafkaConsumer;
             Topics = topics;
             GroupId = groupId;
             ParserActor = parserActor;
+            Logger.LogInformation("Create KafkaConsumerActor");
         }
 
-        public Action<Action<Commitable>> RunKafkaConsumer { get; }
+        public ILogger<KafkaConsumerActor> Logger { get; }
         public KafkaConsumer KafkaConsumer { get; }
         public ICollection<string> Topics { get; }
         public string GroupId { get; }
@@ -27,16 +32,28 @@ namespace SeungYongShim.Proto.OpenTelemetry.Kafka
 
         public Task ReceiveAsync(IContext context) => context.Message switch
         {
+            Restarting msg => Handle(msg),
             Stopped msg => Handle(msg),
             Started msg => Handle(msg, context),
-            Commitable msg => Handle(msg, context),
+            KafkaRequest msg => Handle(msg, context),
             _ => Task.CompletedTask
         };
 
-        private async Task Handle(Commitable msg, IContext context)
+        private Task Handle(Restarting msg)
         {
-            await context.RequestAsync<KafkaCommit>(ParserActor, msg);
-            msg.Commit();
+            KafkaConsumer.Stop();
+            KafkaConsumer.Dispose();
+            return Task.CompletedTask;
+        }
+
+        private async Task Handle(KafkaRequest msg, IContext context)
+        {
+            context.Send(context.Self, KafkaRequest.Instance);
+            var receive = await KafkaConsumer.ConsumeAsync(TimeSpan.FromMinutes(1));
+            using var activity = ActivitySourceStatic.Instance.StartActivity("KafkaConsumerActor", ActivityKind.Internal, receive.ActivityId);
+
+            _ = await context.RequestAsync<KafkaCommit>(ParserActor, receive.Message);
+            receive.Commit();
         }
 
         private Task Handle(Stopped msg)
@@ -48,7 +65,8 @@ namespace SeungYongShim.Proto.OpenTelemetry.Kafka
 
         private Task Handle(Started msg, IContext context)
         {
-            KafkaConsumer.Run(GroupId, Topics, m => context.Send(context.Self, m));
+            context.Send(context.Self, KafkaRequest.Instance);
+            KafkaConsumer.Start(GroupId, Topics);
             return Task.CompletedTask;
         }
     }

@@ -7,7 +7,6 @@ using SampleWebApp.Actors;
 using Serilog;
 using Serilog.Enrichers.ActivityTags;
 using Serilog.Enrichers.Span;
-using SeungYongShim.Proto.OpenTelemetry;
 
 namespace SampleWebApp
 {
@@ -27,7 +26,7 @@ namespace SampleWebApp
                    .ConfigureServices(services =>
                    {
                        services.AddOpenTelemetryTracing(builder => builder
-                               .AddSource(ActivitySourceStatic.Instance.Name)
+                               .AddSource("SeungYongShim.OpenTelemetry")
                                .AddAspNetCoreInstrumentation()
                                .AddJaegerExporter()
                                .SetSampler(new AlwaysOnSampler()));

@@ -19,7 +19,6 @@ namespace Microsoft.Extensions.Hosting
 
         internal static IServiceCollection AddOpenTelemetry(this IServiceCollection services)
         {
-            services.AddSingleton(ActivitySourceStatic.Instance);
             services.AddSingleton(sp => (IRootContext)new RootContext(sp.GetService<ActorSystem>())
                     .WithSenderMiddleware(OpenTelemetrySenderMiddleware()));
             services.AddSingleton(typeof(IPropsFactory<>), typeof(PropsFactoryWithOpenTelemetry<>));

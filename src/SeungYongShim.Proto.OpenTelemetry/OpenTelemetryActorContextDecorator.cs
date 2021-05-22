@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Google.Protobuf;
 using Proto;
 
 namespace SeungYongShim.Proto.OpenTelemetry
@@ -10,7 +11,9 @@ namespace SeungYongShim.Proto.OpenTelemetry
         public IContext Context { get; }
 
         public OpenTelemetryActorContextDecorator(IContext context) : base(context)
-            => Context = context;
+        {
+            Context = context;
+        }
 
         public override async Task Receive(MessageEnvelope envelope)
         {

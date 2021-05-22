@@ -1,5 +1,5 @@
 using System;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Proto;
 
 namespace SeungYongShim.Proto.DependencyInjection
@@ -16,6 +16,7 @@ namespace SeungYongShim.Proto.DependencyInjection
         public IServiceProvider ServiceProvider { get; }
 
         public Props Create(params object[] args)
-            => Props.FromProducer(() => (T)ActivatorUtilities.CreateInstance(ServiceProvider, typeof(T), args));
+            => Props.FromProducer(() => ServiceProvider.CreateInstance<T>(args))
+                    .WithContextDecorator(ctx => new LoggerActorContextDecorator(ctx, ServiceProvider));
     }
 }
