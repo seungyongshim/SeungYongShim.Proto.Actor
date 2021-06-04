@@ -12,7 +12,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-    <PackageReference Include="Proto.Actor" Version="0.17.0" />
+    <PackageReference Include="Proto.Actor" Version="0.18.0" />
     <None Include="$(SolutionDir)..\icon.png" Pack="true" PackagePath="\"/>
   </ItemGroup>
   <PropertyGroup>
