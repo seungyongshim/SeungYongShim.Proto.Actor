@@ -4,7 +4,7 @@
     <TargetFramework>net5</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Proto.Persistence" Version="0.17.0" />
+    <PackageReference Include="Proto.Persistence" Version="0.25.0" />
     <PackageReference Include="SeungYongShim.Kafka" Version="2.2.0" />
   </ItemGroup>
 
