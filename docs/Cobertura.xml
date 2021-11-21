@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage line-rate="0" branch-rate="0" lines-covered="0" lines-valid="60" branches-covered="0" branches-valid="26" complexity="29" version="0" timestamp="1637463402">
+  <sources />
+  <packages>
+    <package name="AltCover.Monitor" line-rate="0" branch-rate="0" complexity="29">
+      <classes>
+        <class name="AltCover.Carrier" filename="/_/AltCover.Monitor/Monitor.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="Add" signature="(T)" line-rate="1" branch-rate="1" complexity="NaN">
+              <lines />
+            </method>
+            <method name="Dispose" signature="(System.Boolean)" line-rate="1" branch-rate="1" complexity="NaN">
+              <lines />
+            </method>
+            <method name="Dispose" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+        <class name="AltCover.Monitor" filename="/_/AltCover.Monitor/Monitor.cs" line-rate="1" branch-rate="1" complexity="9">
+          <methods>
+            <method name="TryGetPointTotals" signature="(AltCover.PointCount&amp;)" line-rate="1" branch-rate="1" complexity="NaN">
+              <lines />
+            </method>
+            <method name="TryGetVisitTotals" signature="(AltCover.PointCount&amp;)" line-rate="1" branch-rate="1" complexity="NaN">
+              <lines />
+            </method>
+            <method name=".cctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="TypeInstance" signature="()" line-rate="1" branch-rate="1" complexity="8">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+      </classes>
+    </package>
+  </packages>
+</coverage>
